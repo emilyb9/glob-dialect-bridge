@@ -1,0 +1,14 @@
+{
+  "name": "glob-dialect-bridge",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Convert glob patterns between .gitignore syntax and minimatch syntax",
+  "scripts": {
+    "test": "node --experimental-strip-types --test src/*.test.ts"
+  },
+  "engines": {
+    "node": ">=22.6.0"
+  },
+  "license": "MIT"
+}
