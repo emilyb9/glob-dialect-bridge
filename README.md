@@ -60,6 +60,21 @@ minimatchToGitignore("/etc/passwd");   // throws: absolute paths have no gitigno
 minimatchToGitignore("*.{js,ts}");     // throws: brace expansion has no gitignore equivalent
 ```
 
+## Command line
+
+`src/cli.ts` converts a whole file from stdin to stdout, in either direction:
+
+```
+node --experimental-strip-types src/cli.ts --to-minimatch < .gitignore > patterns.txt
+node --experimental-strip-types src/cli.ts --to-gitignore < patterns.txt > .gitignore
+```
+
+`--to-minimatch` reads a `.gitignore` file (comments and blank lines are
+skipped) and prints one minimatch pattern per line. `--to-gitignore` reads
+one minimatch pattern per line and prints the equivalent `.gitignore` file.
+A pattern with no gitignore equivalent aborts the whole run: the error goes
+to stderr and the process exits with status 1.
+
 ## Known limitations
 
 - Round trips aren't always byte-for-byte identical. `minimatchToGitignore`
